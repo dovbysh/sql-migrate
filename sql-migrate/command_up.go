@@ -22,6 +22,7 @@ Options:
   -env="development"     Environment.
   -limit=0               Limit the number of migrations (0 = unlimited).
   -dryrun                Don't apply migrations, just print them.
+  -verbose               Show queries in console.
 
 `
 	return strings.TrimSpace(helpText)
@@ -40,7 +41,7 @@ func (c *UpCommand) Run(args []string) int {
 	cmdFlags.Usage = func() { ui.Output(c.Help()) }
 	cmdFlags.IntVar(&limit, "limit", 0, "Max number of migrations to apply.")
 	cmdFlags.BoolVar(&dryrun, "dryrun", false, "Don't apply migrations, just print them.")
-	cmdFlags.BoolVar(&verbose, "verbose", false, "Show queries at console")
+	cmdFlags.BoolVar(&verbose, "verbose", false, "Show queries in console")
 	ConfigFlags(cmdFlags)
 
 	if err := cmdFlags.Parse(args); err != nil {
