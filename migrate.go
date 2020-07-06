@@ -472,6 +472,7 @@ func (ms MigrationSet) ExecMax(db *sql.DB, dialect string, m MigrationSource, di
 			stmt = strings.TrimSuffix(stmt, "\n")
 			stmt = strings.TrimSuffix(stmt, " ")
 			stmt = strings.TrimSuffix(stmt, ";")
+			ms.Log.Println(stmt)
 			if _, err := executor.Exec(stmt); err != nil {
 				if trans, ok := executor.(*gorp.Transaction); ok {
 					_ = trans.Rollback()
@@ -479,6 +480,7 @@ func (ms MigrationSet) ExecMax(db *sql.DB, dialect string, m MigrationSource, di
 
 				return applied, newTxError(migration, err)
 			}
+			ms.Log.Println("Success!")
 		}
 
 		switch dir {

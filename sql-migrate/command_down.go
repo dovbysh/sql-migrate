@@ -22,6 +22,7 @@ Options:
   -env="development"     Environment.
   -limit=1               Limit the number of migrations (0 = unlimited).
   -dryrun                Don't apply migrations, just print them.
+  -verbose               Show queries in console.
 
 `
 	return strings.TrimSpace(helpText)
